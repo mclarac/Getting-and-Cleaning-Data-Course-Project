@@ -77,4 +77,5 @@ meltData <- activity_tracking %>%
 
 summarizedData <- aggregate(value ~ subjects + activity + variable, 
                             data = meltData, FUN = "mean") %>% 
-    select(subjects, activity, variable, mean = value)
+    select(subjects, activity, variable, mean = value) %>% 
+    dcast(subjects + activity ~ variable)
