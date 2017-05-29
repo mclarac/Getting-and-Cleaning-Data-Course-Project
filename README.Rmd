@@ -1,0 +1,46 @@
+---
+title: "README"
+author: "Maria Camila Lara"
+date: "May 28, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The analysis and work done for this project was based on the data published by Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio and Luca Oneto, all of them Smartlab researchers at the time when data was released in November, 2012. 
+
+#Pre-processing
+
+The original data were separated into test set (2.947 obs) and train set (7.352 obs). For the transformations and subsequently analysis, these two data sets were combined again into a new data frame called "activity_tracking". Then, variables names were added based on the "features.txt" available in the original data.
+
+#Dropping-out unwanted variables
+
+For this analysis, the only wanted variables, based on features described in the Code Book, are mean() and std(). Thus, all the other variables, referred to measurements that are not of interest to the course project, were dropped. This was done creating a vector called "wanted_var"-
+
+#Adding activity names
+
+Next, activity labels (using "y_train.txt" and "y_test.txt" files) were added to the new data set. In order to have descriptive activity names the "activity_labels.txt" was used. This later file was coded as follows:
+
+* 1: Walking
+* 2: Walking_upstairs
+* 3: Walking_downstairs
+* 4: Sitting
+* 5: Standing
+* 6: Laying
+
+#Adding subjects
+
+As explained in "README.txt" that comes with the original data, an identifier of the subject who carried out the experiment was stored and it was available in "subject_train.txt" and "subject_test.txt" files. In these files, each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30.
+
+Then, this variables were added to the data set created in order to obtain the summarize data, described below.
+
+#Summarizing the data
+
+From the data set that has descriptive activities, the variables of interest and an identifier of the subject who carried out the experiment, the average of each variable of each activity and each subject was calculated. This result is stored in the "summarizeData" data frame, that has the following structure:
+
+* subjects: the identifier that ranges from 1 to 30.
+* activity: descriptive activities as explained in the "Adding activity names" section
+* variable: features with the measures of interest (i.e. mean and standard deviation)
+* mean: the average of each variable of each activity and each subject
